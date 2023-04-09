@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { PlanStatus } from "../enum/plan-status.enum";
 
 @Entity()
 export class Plan {
@@ -16,6 +17,12 @@ export class Plan {
   description: string;
   @Column()
   price: number;
+  @Column({
+    type: "enum",
+    enum: PlanStatus,
+    default: PlanStatus.ACTIVE,
+  })
+  status: PlanStatus;
   @CreateDateColumn({
     type: "datetime",
     default: () => "CURRENT_TIMESTAMP(6)",

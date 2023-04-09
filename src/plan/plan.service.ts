@@ -4,6 +4,7 @@ import { UpdatePlanDto } from "./dto/update-plan.dto";
 import { Plan } from "./entities/plan.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
+import { PlanStatus } from "./enum/plan-status.enum";
 
 @Injectable()
 export class PlanService {
@@ -34,6 +35,6 @@ export class PlanService {
   async remove(id: number) {
     const plan = await this.findOne(id);
 
-    return this.planRepository.remove(plan);
+    return this.planRepository.save({ ...plan, status: PlanStatus.DELETED });
   }
 }
