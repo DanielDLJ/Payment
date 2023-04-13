@@ -19,9 +19,17 @@ export class PlanService {
     private planRepository: Repository<Plan>,
   ) {}
 
-  create(createPlanDto: CreatePlanDto) {
-    const newPlan = this.planRepository.create(createPlanDto);
-    return this.planRepository.save(newPlan);
+  async create(createPlanDto: CreatePlanDto) {
+    this.logger.log(
+      { ...createPlanDto },
+      `${this.findAll.name} - Starting logic to create a plan`,
+    );
+    const plan = this.planRepository.create(createPlanDto);
+    const createdPlan = await this.planRepository.save(plan);
+    this.logger.log(
+      `${this.findAll.name} - Finished logic to create a plan with id: ${createdPlan.id}`,
+    );
+    return createdPlan;
   }
 
   async findAll() {
