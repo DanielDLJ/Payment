@@ -65,15 +65,33 @@
       "json",
       "ts"
     ],
-    "rootDir": "test",
+    "rootDir": ".",
     "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },
     "collectCoverageFrom": [
-      "**/*.(t|j)s"
+      "src/**/*.ts"
     ],
-    "coverageDirectory": "../coverage",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/database/",
+      "/config/",
+      ".module.ts",
+      "<rootDir>/src/main.ts",
+      "/swagger/",
+      "test/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "statements": 100,
+        "branches": 100,
+        "functions": 100,
+        "lines": 100
+      }
+    },
+    "collectCoverage": true,
+    "coverageDirectory": "./coverage",
     "testEnvironment": "node"
   }
 }
