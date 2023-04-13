@@ -15,5 +15,5 @@ export class CreatePlanDto {
   @ApiPropertyOptional({ example: PlanStatus.ACTIVE })
   @IsEnum(PlanStatus)
   @IsOptional()
-  status: PlanStatus;
+  status?: PlanStatus;
 }
