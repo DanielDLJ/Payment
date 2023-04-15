@@ -14,9 +14,15 @@ import {
   CorrelationIdMiddleware,
 } from "./correlation-id/correlation-id.middleware";
 import { Request } from "express";
+import { ConfigModule } from "@nestjs/config";
+import { configuration } from "./config/configuration";
 
 @Module({
   imports: [
+    ConfigModule.forRoot({
+      load: [configuration],
+      isGlobal: true,
+    }),
     PlanModule,
     DatabaseModule,
     LoggerModule.forRoot({
