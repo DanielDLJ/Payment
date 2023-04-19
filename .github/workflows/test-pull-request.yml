@@ -20,6 +20,9 @@ jobs:
       run: |
         npm install
         npm run test:cov
+        
+    - name: npm run lint:check
+      run: npm run lint:check
 
     - name: Coveralls
       uses: coverallsapp/github-action@v2
