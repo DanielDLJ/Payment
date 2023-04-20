@@ -16,6 +16,7 @@ import {
 import { Request } from "express";
 import { ConfigModule } from "@nestjs/config";
 import { configuration } from "./config/configuration";
+import { UserModule } from "./user/user.module";
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { configuration } from "./config/configuration";
         },
       },
     }),
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
