@@ -29,7 +29,11 @@ export class UserService {
 
   async findAll() {
     this.logger.log(`${this.findAll.name} - Starting logic to find all users`);
-    const users = await this.userRepository.find();
+    const users = await this.userRepository.find({
+      relations: {
+        adresses: true,
+      },
+    });
 
     this.logger.log(
       `${this.findAll.name} - Finished logic to find all ${users.length} users`,
@@ -42,7 +46,13 @@ export class UserService {
       `${this.findOne.name} - Starting logic to find user with id: ${id}`,
     );
 
-    const user = await this.userRepository.findOneBy({ id });
+    const user = await this.userRepository.findOne({
+      where: { id: id },
+      relations: {
+        adresses: true,
+      },
+    });
+
     if (!user) {
       const errorMessage = `User with id: ${id} not found`;
       this.logger.error(`${this.findOne.name} - ${errorMessage}`);

@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
@@ -9,6 +10,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { randomUUID } from "crypto";
 import { UserStatus } from "../enum/user-status.enum";
 import { UserEmailStatus } from "../enum/user-email-status.enum";
+import { UserAddress } from "../../user-address/entities/user-address.entity";
 
 @Entity()
 export class User {
@@ -54,4 +56,8 @@ export class User {
     onUpdate: "CURRENT_TIMESTAMP(6)",
   })
   updatedAt: Date;
+
+  @ApiProperty({ type: () => UserAddress, isArray: true })
+  @OneToMany(() => UserAddress, (address) => address.user)
+  adresses: UserAddress[];
 }
