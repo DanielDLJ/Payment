@@ -129,6 +129,13 @@ describe("UserService", () => {
         },
       });
     });
+    it("should throw an error if user not found", async () => {
+      jest
+        .spyOn(mockUserRepository, "findOne")
+        .mockReturnValueOnce(Promise.resolve<User>(undefined));
+
+      await expect(service.findOne(1)).rejects.toThrow();
+    });
   });
 
   describe("update", () => {
