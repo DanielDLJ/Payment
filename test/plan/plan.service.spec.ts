@@ -105,7 +105,6 @@ describe("PlanService", () => {
       const id = 1;
       const plan = await service.findOne(id);
 
-      console.log("plan", plan);
       expect(plan).toEqual({
         ...expectedPlan,
         id: id,
@@ -121,7 +120,6 @@ describe("PlanService", () => {
       const id = 1;
       const plan = await service.update(id, updatePlanDto);
 
-      console.log("plan", plan);
       expect(plan).toEqual({
         ...expectedPlan,
         id: id,
