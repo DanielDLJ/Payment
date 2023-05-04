@@ -17,6 +17,7 @@ module.exports = {
   },
   ignorePatterns: ['.eslintrc.js'],
   rules: {
+    'no-console': 'error',
     'prettier/prettier': ['error', { singleQuote: false }],
     'prettier/prettier': ['error', { endOfLine:"auto" }],
     '@typescript-eslint/interface-name-prefix': 'off',
